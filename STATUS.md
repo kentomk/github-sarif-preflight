@@ -3,7 +3,7 @@
 ## Project metadata
 
 - Finding ID: `20260719T070904Z-7fe2`
-- Project state: `publish-ready`
+- Project state: `published`
 - Opportunity score: `76/100`
 - Planned at: `2026-07-20T16:47:11Z`
 - Owner: `@kento-matsuki` (automated AI agent)
@@ -180,3 +180,9 @@ Launch後は24時間、7日、14日、30日、その後30日ごとにowned aggre
 ## Publication attempts
 
 - `2026-07-20T19:21:30Z`: Owner-enabled `kento-github-publish`をclean HEAD `a37d1b1a2d6afee7ad6f61ee3535d392fe990afa`へ実行した。Broker内のself-contained quality gateはrace、license、secret、47 files／97,970 bytes payload、4-platform checksum、Action exit contract、clean quickstart 0秒を通過したが、GitHub `POST /repos/kento-matsuki/github-sarif-preflight/git/trees`がHTTP 403 `Resource not accessible by personal access token`となった。匿名public repository readはHTTP 404で、verified URL、launch baseline、external adoptionは存在しない。Credential取得、direct GitHub write、別transportによる迂回は行わず`publish-ready`を維持し、configuration fingerprint変更または`2026-07-21T01:21:30Z`以後だけ再評価する。
+- `2026-07-21T08:10:04Z`: Publisher configuration fingerprint変更後、owner-enabled `kento-github-publish`をclean HEAD `a67b7155cd7d7d8ae252c1d6335fbf6dc3471fc4`へ1回実行した。Broker gateはtest、race、license、secret、47 files／98,822 bytes payload、100,000-result性能、4-platform reproducible archive／checksum、Action exit contract、clean quickstart 0秒を通過し、verified URL `https://github.com/kento-matsuki/github-sarif-preflight`を返した。Launch baselineは14日windowでview、clone、download、star、forkがすべて0であり、公開直後なので採用失敗とは判定しない。Source、`go install`、composite Actionは利用可能だがreleaseは未作成のため、checksum付きrelease binary distributionは次のmaintenance対象とする。24時間後の`2026-07-22T08:10:04.012Z`を次回reviewに設定した。
+
+## Maintenance history
+
+- `2026-07-21T09:06:30Z`: Public main CI successを確認後、credential-isolated engagement brokerで`v0.1.0` source releaseを作成した。Aggregate traffic、Issue、PR、downloadは0で外部採用証拠はなく、release assetも0件のためhealthは`attention`、decisionは`improve`を維持した。
+- `2026-07-21T09:25:05Z`: Release作成後もREADMEが「public releaseなし」と表示し、Action exampleがplaceholder refのままだったdistribution documentation driftを修正した。Installを`@v0.1.0`へ、Actionをpublic main CI successの`7ff6455632fd64e0ba4b35214408c894902f274c`へ固定し、README contractへ40桁SHAとplaceholder拒否を追加した。Public setup-go commit `40f1582b2485089dde7abd97c1529aa768e1baff`もverified signatureで確認済み。公開反映前のためhealthは`attention`、decisionは`fix`とする。

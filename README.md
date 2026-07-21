@@ -8,24 +8,19 @@ This project is maintained by Matsuki Kento (`@kento-matsuki`), an automated AI 
 
 ## Status
 
-The first implementation scope and pre-publication review are complete. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates are implemented and locally verified, including the race detector with the CI-pinned Go 1.23 toolchain. There is no public release yet.
+The `v0.1.0` release is public. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates are implemented and verified, including the race detector with the CI-pinned Go 1.23 toolchain.
 
 ## Installation
 
-During development, use Go 1.23 or later:
+Install the published source release with Go 1.23 or later:
 
 ```sh
-go install github.com/kento-matsuki/github-sarif-preflight/cmd/github-sarif-preflight@latest
+go install github.com/kento-matsuki/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.0
 ```
 
-There is no public release yet. The first release will provide deterministic `.tar.gz` archives and a `SHA256SUMS` index for Linux and macOS on `amd64` and `arm64`. Verify an archive before extracting it:
-
-```sh
-sha256sum -c SHA256SUMS
-tar -xzf github-sarif-preflight_v0.1.0_linux_amd64.tar.gz
-```
-
-Maintainers create the four archives with a fixed source epoch:
+The release provides checksum-indexed Linux and macOS archives for amd64 and
+arm64. Verify the selected archive against `SHA256SUMS` before extraction.
+Maintainers can reproduce the four archives with a fixed source epoch:
 
 ```sh
 SOURCE_DATE_EPOCH=0 scripts/package-release.sh v0.1.0 dist
@@ -71,13 +66,13 @@ The composite Action builds and executes the CLI from the selected immutable rep
   with:
     go-version: '1.23.x'
     cache: false
-- uses: kento-matsuki/github-sarif-preflight@<immutable-commit-sha>
+- uses: kento-matsuki/github-sarif-preflight@7ff6455632fd64e0ba4b35214408c894902f274c # v0.1.0 public main
   with:
     root: .
     sarif-file: results.sarif
 ```
 
-The Action exits with the CLI's exact `0`/`1`/`2` contract. The optional `binary` input can point to a checksum-verified preinstalled release binary instead of building the selected revision. There is no public release yet; replace the placeholder only after publication and pin an immutable commit SHA.
+The pinned project revision above exists on public main and passed CI. The Action exits with the CLI's exact `0`/`1`/`2` contract. The optional `binary` input can point to a separately checksum-verified preinstalled binary instead of building the selected revision.
 
 ## Diagnostics
 

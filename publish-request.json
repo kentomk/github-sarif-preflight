@@ -13,7 +13,7 @@
   "candidateId": "20260719T070904Z-7fe2",
   "targetUsers": "DevSecOps engineers and scanner maintainers uploading third-party SARIF to GitHub Code Scanning.",
   "jobToBeDone": "Check SARIF against GitHub's documented consumer profile and the current repository checkout before upload, then identify processing failures or broken source links in time to fix scanner output.",
-  "distributionPath": "Checksum-verified Linux and macOS release binaries, go install, and an offline composite GitHub Action using the same CLI contract.",
+  "distributionPath": "Checksum-verified reproducible Linux and macOS archives, go install, and a source-built offline composite GitHub Action.",
   "successMetric": "Within 30 days, one unrelated external repository uses the preflight to avoid a SARIF processing failure or repair an alert source link to a real checkout path.",
   "reviewAfterDays": 1,
   "opportunityScore": 76,
@@ -72,5 +72,5 @@
   "differentiation": "An offline read-only preflight limited to GitHub's documented SARIF consumer profile and POSIX checkout paths, with deterministic diagnostics and explicit unknowns instead of a general SARIF validator.",
   "testCommand": "scripts/publisher-gate.sh",
   "license": "Apache-2.0",
-  "commitMessage": "fix: restore executable modes in published scripts"
+  "commitMessage": "ci: add reproducible release asset workflow"
 }

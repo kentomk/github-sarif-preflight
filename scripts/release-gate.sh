@@ -8,4 +8,5 @@ tests/quality-gate.sh
 tests/publisher-contract.sh
 tests/publisher-payload.sh
 tests/action-wrapper.sh
+tests/release-workflow.sh
 tests/quickstart-clean.sh
