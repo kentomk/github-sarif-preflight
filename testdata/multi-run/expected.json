@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "toolVersion": "test",
+  "root": ".",
+  "inputs": [
+    "../../testdata/multi-run/results.sarif"
+  ],
+  "diagnostics": [
+    {
+      "id": "GSP001",
+      "severity": "error",
+      "input": "../../testdata/multi-run/results.sarif",
+      "run": 0,
+      "result": 0,
+      "ruleId": "SYN-B",
+      "message": "result has no inline message.text or message.markdown",
+      "remediation": "add an inline result message before uploading to GitHub Code Scanning"
+    },
+    {
+      "id": "GSP002",
+      "severity": "error",
+      "input": "../../testdata/multi-run/results.sarif",
+      "run": 0,
+      "result": 0,
+      "location": 0,
+      "ruleId": "SYN-B",
+      "message": "physical location has an empty artifactLocation.uri",
+      "remediation": "set artifactLocation.uri to a non-empty repository-relative path"
+    },
+    {
+      "id": "GSP005",
+      "severity": "warning",
+      "input": "../../testdata/multi-run/results.sarif",
+      "run": 0,
+      "result": 0,
+      "location": 1,
+      "ruleId": "SYN-B",
+      "path": "missing/z.js",
+      "message": "artifact path is missing from the checkout or is not a regular file",
+      "remediation": "make the scanner URI relative to the checked-out repository and point it to a regular file"
+    },
+    {
+      "id": "GSP004",
+      "severity": "error",
+      "input": "../../testdata/multi-run/results.sarif",
+      "run": 1,
+      "result": 0,
+      "location": 0,
+      "ruleId": "SYN-C",
+      "path": "../outside.go",
+      "message": "artifact path escapes the repository root after normalization",
+      "remediation": "emit a repository-relative artifact URI that remains inside the checkout"
+    }
+  ],
+  "unknowns": [
+    {
+      "input": "../../testdata/multi-run/results.sarif",
+      "run": 0,
+      "result": 1,
+      "location": 0,
+      "ruleId": "SYN-A",
+      "reason": "unsupported non-local URI"
+    }
+  ],
+  "summary": {
+    "inputs": 1,
+    "runs": 2,
+    "results": 4,
+    "diagnostics": 4,
+    "unknowns": 1
+  }
+}

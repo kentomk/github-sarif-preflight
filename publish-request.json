@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 2,
+  "action": "create",
+  "owner": "kento-matsuki",
+  "name": "github-sarif-preflight",
+  "description": "Check SARIF against GitHub Code Scanning's consumer profile and the current checkout before upload.",
+  "topics": [
+    "kento-oss",
+    "sarif",
+    "code-scanning",
+    "devsecops"
+  ],
+  "candidateId": "20260719T070904Z-7fe2",
+  "targetUsers": "DevSecOps engineers and scanner maintainers uploading third-party SARIF to GitHub Code Scanning.",
+  "jobToBeDone": "Check SARIF against GitHub's documented consumer profile and the current repository checkout before upload, then identify processing failures or broken source links in time to fix scanner output.",
+  "distributionPath": "Checksum-verified Linux and macOS release binaries, go install, and an offline composite GitHub Action using the same CLI contract.",
+  "successMetric": "Within 30 days, one unrelated external repository uses the preflight to avoid a SARIF processing failure or repair an alert source link to a real checkout path.",
+  "reviewAfterDays": 1,
+  "opportunityScore": 76,
+  "demandEvidence": [
+    {
+      "url": "https://github.com/Azure/template-analyzer/issues/393",
+      "kind": "user-failure",
+      "independenceKey": "template-analyzer inline message processing failure"
+    },
+    {
+      "url": "https://github.com/aquasecurity/trivy/issues/8141",
+      "kind": "user-failure",
+      "independenceKey": "trivy artifact location processing failure"
+    },
+    {
+      "url": "https://github.com/Checkmarx/kics/issues/5285",
+      "kind": "producer-workaround",
+      "independenceKey": "kics checkout-relative source path workaround"
+    },
+    {
+      "url": "https://github.com/github/codeql-action/issues/2215",
+      "kind": "user-failure",
+      "independenceKey": "android lint uri base processing failure"
+    }
+  ],
+  "alternatives": [
+    {
+      "name": "GitHub SARIF support documentation",
+      "url": "https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning",
+      "tested": true,
+      "gap": "Documents the consumer subset but does not inspect a SARIF file against the current checkout."
+    },
+    {
+      "name": "github/codeql-action upload-sarif preprocessing",
+      "url": "https://github.com/github/codeql-action",
+      "tested": true,
+      "gap": "Preprocesses upload inputs but does not expose one credential-free local consumer-profile and checkout preflight."
+    },
+    {
+      "name": "Microsoft Sarif.Multitool 5.5.0",
+      "url": "https://www.nuget.org/packages/Sarif.Multitool/5.5.0",
+      "tested": true,
+      "gap": "Accepted all four controlled consumer-profile failure fixtures without a generic validation error."
+    },
+    {
+      "name": "jq JSON shape inspection",
+      "url": "https://jqlang.org/",
+      "tested": true,
+      "gap": "Checks structural predicates but does not resolve GitHub profile rules and repository paths together."
+    }
+  ],
+  "duplicateSearch": {
+    "completed": true,
+    "summary": "Compared GitHub documentation and upload preprocessing, Sarif.Multitool 5.5.0, and jq against four controlled fixtures; none combined consumer-profile checks with the current checkout."
+  },
+  "differentiation": "An offline read-only preflight limited to GitHub's documented SARIF consumer profile and POSIX checkout paths, with deterministic diagnostics and explicit unknowns instead of a general SARIF validator.",
+  "testCommand": "scripts/publisher-gate.sh",
+  "license": "Apache-2.0",
+  "commitMessage": "Publish github-sarif-preflight v0.1.0"
+}

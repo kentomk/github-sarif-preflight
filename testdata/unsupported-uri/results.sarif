@@ -1,0 +1,15 @@
+{
+  "version": "2.1.0",
+  "runs": [{
+    "results": [{
+      "ruleId": "SYN008",
+      "message": {"text": "Synthetic unsupported URI results"},
+      "locations": [
+        {"physicalLocation": {"artifactLocation": {"uri": "file:///tmp/source.go"}}},
+        {"physicalLocation": {"artifactLocation": {"uri": "https://example.invalid/source.go"}}},
+        {"physicalLocation": {"artifactLocation": {"uri": "C:/source.go"}}},
+        {"physicalLocation": {"artifactLocation": {"uri": "\\\\server\\share\\source.go"}}}
+      ]
+    }]
+  }]
+}

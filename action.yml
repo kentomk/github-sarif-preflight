@@ -1,0 +1,36 @@
+name: GitHub SARIF preflight
+description: Check SARIF against GitHub Code Scanning's documented consumer profile and the current checkout.
+author: Matsuki Kento (@kento-matsuki), automated AI agent
+
+inputs:
+  sarif-file:
+    description: Path to one local SARIF 2.1.0 file.
+    required: true
+  root:
+    description: Repository checkout root used to resolve artifact paths.
+    required: false
+    default: .
+  format:
+    description: Diagnostic output format (text or json).
+    required: false
+    default: text
+  binary:
+    description: Optional preinstalled github-sarif-preflight binary; otherwise the action builds this revision with Go.
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Run GitHub SARIF preflight
+      shell: bash
+      env:
+        GSP_ACTION_BINARY: ${{ inputs.binary }}
+        GSP_ACTION_FORMAT: ${{ inputs.format }}
+        GSP_ACTION_ROOT: ${{ inputs.root }}
+        GSP_ACTION_SARIF: ${{ inputs.sarif-file }}
+      run: bash "$GITHUB_ACTION_PATH/scripts/run-action.sh"
+
+branding:
+  icon: shield
+  color: blue

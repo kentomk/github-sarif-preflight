@@ -1,0 +1,18 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [{
+    "tool": {"driver": {
+      "name": "synthetic-scanner",
+      "rules": [{
+        "id": "SYN001",
+        "messageStrings": {"message-from-rule": {"text": "Synthetic referenced message"}}
+      }]
+    }},
+    "results": [{
+      "ruleId": "SYN001",
+      "message": {"id": "message-from-rule"},
+      "locations": [{"physicalLocation": {"artifactLocation": {"uri": "src/app.js", "uriBaseId": "%SRCROOT%"}}}]
+    }]
+  }]
+}

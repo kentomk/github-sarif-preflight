@@ -1,0 +1,10 @@
+{
+  "version": "2.1.0",
+  "runs": [{
+    "results": [{
+      "ruleId": "SYN005",
+      "message": {"text": "Synthetic result"},
+      "locations": [{"physicalLocation": {"artifactLocation": {"uri": "src/missing.js", "uriBaseId": "%SRCROOT%"}}}]
+    }]
+  }]
+}

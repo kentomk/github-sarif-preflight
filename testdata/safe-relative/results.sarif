@@ -1,0 +1,10 @@
+{
+  "version": "2.1.0",
+  "runs": [{
+    "results": [{
+      "ruleId": "SYN006",
+      "message": {"text": "Synthetic safe result"},
+      "locations": [{"physicalLocation": {"artifactLocation": {"uri": "terraform/main.tf"}}}]
+    }]
+  }]
+}

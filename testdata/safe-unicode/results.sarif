@@ -1,0 +1,10 @@
+{
+  "version": "2.1.0",
+  "runs": [{
+    "results": [{
+      "ruleId": "SYN007",
+      "message": {"text": "Synthetic safe result"},
+      "locations": [{"physicalLocation": {"artifactLocation": {"uri": "src/%E6%97%A5%E6%9C%AC%E8%AA%9E.js", "uriBaseId": "%SRCROOT%"}}}]
+    }]
+  }]
+}

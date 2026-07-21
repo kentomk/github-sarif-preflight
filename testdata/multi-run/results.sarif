@@ -1,0 +1,39 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "SYN-B",
+          "message": {"id": "referenced-only"},
+          "locations": [
+            {"physicalLocation": {"artifactLocation": {"uri": "", "uriBaseId": "%SRCROOT%"}}},
+            {"physicalLocation": {"artifactLocation": {"uri": "missing/z.js", "uriBaseId": "%SRCROOT%"}}}
+          ]
+        },
+        {
+          "ruleId": "SYN-A",
+          "message": {"text": "Synthetic result"},
+          "locations": [
+            {"physicalLocation": {"artifactLocation": {"uri": "file:///tmp/source.go"}}}
+          ]
+        }
+      ]
+    },
+    {
+      "results": [
+        {
+          "ruleId": "SYN-C",
+          "message": {"markdown": "Synthetic result"},
+          "locations": [
+            {"physicalLocation": {"artifactLocation": {"uri": "../outside.go"}}}
+          ]
+        },
+        {
+          "ruleId": "SYN-D",
+          "message": {"text": "Location-free result"}
+        }
+      ]
+    }
+  ]
+}

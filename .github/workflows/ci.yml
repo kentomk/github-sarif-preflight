@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Format
+        run: test -z "$(gofmt -l cmd internal)"
+      - name: Test
+        run: go test ./...
+      - name: Race test
+        run: go test -race ./...
+      - name: Vet
+        run: go vet ./...
+      - name: License, secret, and static policy
+        run: scripts/test-policy.sh
+      - name: Build performance target
+        run: go build -trimpath -buildvcs=false -o "$RUNNER_TEMP/github-sarif-preflight" ./cmd/github-sarif-preflight
+      - name: Performance and memory budget
+        run: scripts/test-performance.sh "$RUNNER_TEMP/github-sarif-preflight"
+      - name: Reproducible release archives
+        run: scripts/test-release.sh
+      - name: Quick start
+        run: |
+          set +e
+          output=$(go run ./cmd/github-sarif-preflight check --root testdata/safe-srcroot testdata/missing-inline-message/results.sarif 2>&1)
+          status=$?
+          set -e
+          test "$status" -eq 1
+          printf '%s\n' "$output" | grep 'GSP001'
+      - name: Composite Action safe smoke
+        uses: ./
+        with:
+          root: testdata/safe-srcroot
+          sarif-file: testdata/safe-srcroot/results.sarif
+      - name: Composite Action diagnostic smoke
+        id: action-diagnostic
+        continue-on-error: true
+        uses: ./
+        with:
+          root: testdata/missing-inline-message
+          sarif-file: testdata/missing-inline-message/results.sarif
+      - name: Verify diagnostic Action failure
+        run: test '${{ steps.action-diagnostic.outcome }}' = failure
+      - name: Composite Action invalid-input smoke
+        id: action-invalid
+        continue-on-error: true
+        uses: ./
+        with:
+          root: testdata/invalid-json
+          sarif-file: testdata/invalid-json/results.sarif
+      - name: Verify invalid-input Action failure
+        run: test '${{ steps.action-invalid.outcome }}' = failure
+
+  alternative-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: '1.23.x'
+          cache: false
+      - name: Set up .NET
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install pinned SARIF Multitool
+        run: dotnet tool install --tool-path "$RUNNER_TEMP/sarif-tool" Sarif.Multitool --version 5.5.0
+      - name: Build preflight binary
+        run: go build -trimpath -o "$RUNNER_TEMP/github-sarif-preflight" ./cmd/github-sarif-preflight
+      - name: Compare pinned alternatives
+        run: scripts/test-alternatives.sh "$RUNNER_TEMP/github-sarif-preflight" "$RUNNER_TEMP/sarif-tool/sarif"

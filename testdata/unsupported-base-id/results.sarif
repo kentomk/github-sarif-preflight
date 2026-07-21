@@ -1,0 +1,11 @@
+{
+  "version": "2.1.0",
+  "runs": [{
+    "tool": {"driver": {"name": "synthetic-scanner"}},
+    "results": [{
+      "ruleId": "SYN003",
+      "message": {"text": "Synthetic result"},
+      "locations": [{"physicalLocation": {"artifactLocation": {"uri": "src/app.js", "uriBaseId": "SRCROOT"}}}]
+    }]
+  }]
+}

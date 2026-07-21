@@ -1,0 +1,6 @@
+../../testdata/multi-run/results.sarif:run[0].result[0] GSP001 error result has no inline message.text or message.markdown
+../../testdata/multi-run/results.sarif:run[0].result[0].location[0] GSP002 error physical location has an empty artifactLocation.uri
+../../testdata/multi-run/results.sarif:run[0].result[0].location[1] GSP005 warning artifact path is missing from the checkout or is not a regular file path=missing/z.js
+../../testdata/multi-run/results.sarif:run[1].result[0].location[0] GSP004 error artifact path escapes the repository root after normalization path=../outside.go
+../../testdata/multi-run/results.sarif:run[0].result[1].location[0] unknown unsupported non-local URI
+summary: inputs=1 runs=2 results=4 diagnostics=4 unknowns=1
