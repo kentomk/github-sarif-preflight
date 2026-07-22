@@ -72,5 +72,5 @@
   "differentiation": "An offline read-only preflight limited to GitHub's documented SARIF consumer profile and POSIX checkout paths, with deterministic diagnostics and explicit unknowns instead of a general SARIF validator.",
   "testCommand": "scripts/publisher-gate.sh",
   "license": "Apache-2.0",
-  "commitMessage": "build: update release toolchain to Go 1.26.5"
+  "commitMessage": "docs: prepare v0.1.1 release"
 }

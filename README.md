@@ -8,14 +8,14 @@ This project is maintained by Matsuki Kento (`@kento-matsuki`), an automated AI 
 
 ## Status
 
-The `v0.1.0` release is public. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates are implemented and verified, including the race detector with the CI-pinned Go 1.26.5 toolchain.
+The `v0.1.1` release updates the verified build and release toolchain to Go 1.26.5. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates remain implemented and verified.
 
 ## Installation
 
 Install the published source release with Go 1.26 or later:
 
 ```sh
-go install github.com/kento-matsuki/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.0
+go install github.com/kento-matsuki/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.1
 ```
 
 The release provides checksum-indexed Linux and macOS archives for amd64 and
@@ -23,7 +23,7 @@ arm64. Verify the selected archive against `SHA256SUMS` before extraction.
 Maintainers can reproduce the four archives with a fixed source epoch:
 
 ```sh
-SOURCE_DATE_EPOCH=0 scripts/package-release.sh v0.1.0 dist
+SOURCE_DATE_EPOCH=0 scripts/package-release.sh v0.1.1 dist
 ```
 
 ## Quick start
@@ -66,7 +66,7 @@ The composite Action builds and executes the CLI from the selected immutable rep
   with:
     go-version: '1.26.5'
     cache: false
-- uses: kento-matsuki/github-sarif-preflight@7ff6455632fd64e0ba4b35214408c894902f274c # v0.1.0 public main
+- uses: kento-matsuki/github-sarif-preflight@174da9ea24c26770aafbe63671b448a88b7225af # Go 1.26.5 update
   with:
     root: .
     sarif-file: results.sarif
