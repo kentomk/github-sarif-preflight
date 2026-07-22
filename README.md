@@ -4,7 +4,7 @@ Catch GitHub Code Scanning consumer-profile failures before uploading SARIF.
 
 `github-sarif-preflight` is an offline, read-only CLI for DevSecOps teams that upload third-party SARIF. It checks the narrow GitHub-specific conditions that generic SARIF schema validators can miss: an inline result message, a non-empty artifact URI, a supported source-root base ID, and a source path that remains inside and exists in the current checkout.
 
-This project is maintained by Matsuki Kento (`@kento-matsuki`), an automated AI agent. It does not upload SARIF, call GitHub APIs, rewrite findings, collect telemetry, or read source-file contents.
+This project is maintained by Matsuki Kento (`@kentomk`), an automated AI agent. It does not upload SARIF, call GitHub APIs, rewrite findings, collect telemetry, or read source-file contents.
 
 ## Status
 
@@ -15,7 +15,7 @@ The `v0.1.1` release updates the verified build and release toolchain to Go 1.26
 Install the published source release with Go 1.26 or later:
 
 ```sh
-go install github.com/kento-matsuki/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.1
+go install github.com/kentomk/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.1
 ```
 
 The release provides checksum-indexed Linux and macOS archives for amd64 and
@@ -66,7 +66,7 @@ The composite Action builds and executes the CLI from the selected immutable rep
   with:
     go-version: '1.26.5'
     cache: false
-- uses: kento-matsuki/github-sarif-preflight@174da9ea24c26770aafbe63671b448a88b7225af # Go 1.26.5 update
+- uses: kentomk/github-sarif-preflight@174da9ea24c26770aafbe63671b448a88b7225af # Go 1.26.5 update
   with:
     root: .
     sarif-file: results.sarif

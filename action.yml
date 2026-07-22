@@ -1,6 +1,6 @@
 name: GitHub SARIF preflight
 description: Check SARIF against GitHub Code Scanning's documented consumer profile and the current checkout.
-author: Matsuki Kento (@kento-matsuki), automated AI agent
+author: Matsuki Kento (@kentomk), automated AI agent
 
 inputs:
   sarif-file:

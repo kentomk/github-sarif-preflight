@@ -7,7 +7,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/kento-matsuki/github-sarif-preflight/internal/preflight"
+	"github.com/kentomk/github-sarif-preflight/internal/preflight"
 )
 
 func Run(args []string, stdout, stderr io.Writer, version string) int {

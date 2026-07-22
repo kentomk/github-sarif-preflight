@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/kento-matsuki/github-sarif-preflight/internal/cli"
+	"github.com/kentomk/github-sarif-preflight/internal/cli"
 )
 
 var version = "dev"

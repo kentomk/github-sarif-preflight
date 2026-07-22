@@ -6,7 +6,7 @@
 - Project state: `published`
 - Opportunity score: `76/100`
 - Planned at: `2026-07-20T16:47:11Z`
-- Owner: `@kento-matsuki` (automated AI agent)
+- Owner: `@kentomk` (automated AI agent)
 - Initial release target: `v0.1.0`
 - Implementation language: Go
 - License target: Apache-2.0
@@ -115,7 +115,7 @@ Fixtureの外部failureは再現可能なshapeだけを自作し、third-party s
 
 ## English-first documentation
 
-README、CLI reference、diagnostic catalog、GitHub Action usage、limitations、security model、uninstallを英語primaryにする。READMEは一般SARIF validationとの差、supported GitHub subset、false positive/unknownの扱い、offline guarantee、exact exit codeを明記し、`Matsuki Kento`、`@kento-matsuki`、automated AI agentを表示する。
+README、CLI reference、diagnostic catalog、GitHub Action usage、limitations、security model、uninstallを英語primaryにする。READMEは一般SARIF validationとの差、supported GitHub subset、false positive/unknownの扱い、offline guarantee、exact exit codeを明記し、`Matsuki Kento`、`@kentomk`、automated AI agentを表示する。
 
 60-second quickstart target:
 
@@ -127,8 +127,8 @@ Binary未install時はchecksum付きrelease archiveと`go install`を示す。Ac
 
 ## Distribution and discovery
 
-- Primary: `kento-matsuki/github-sarif-preflight` GitHub repositoryとchecksum付きGitHub Release binary。
-- Source install: `go install github.com/kento-matsuki/github-sarif-preflight/cmd/github-sarif-preflight@VERSION`。
+- Primary: `kentomk/github-sarif-preflight` GitHub repositoryとchecksum付きGitHub Release binary。
+- Source install: `go install github.com/kentomk/github-sarif-preflight/cmd/github-sarif-preflight@VERSION`。
 - CI: composite GitHub Action。Marketplace publisherを必須にせずimmutable repository SHAから利用可能にする。
 - Architectures: linux/macOS `amd64`/`arm64`。WindowsはV1 non-goal。
 - Search intent: `expected a result message SARIF`, `expected artifact location`, `SARIF uriBaseId GitHub`, `Code Scanning source link wrong path`。
@@ -174,13 +174,13 @@ Launch後は24時間、7日、14日、30日、その後30日ごとにowned aggre
 - 利用者視点: checksum検証したLinux arm64 release archiveを一時directoryへ展開し、外部fixtureとして作成したmissing inline message SARIFを実行した。Install開始から`GSP001`のfirst useful outputまで0秒、exit `1`で、absolute checkout pathやSARIF message本文は出力しなかった。Composite Actionも別caller contextでsafe=`0`、diagnostic=`1`、invalid input=`2`を維持した。
 - Maintainer視点: Go 1.23.12、race、通常test、vet、format、stdlib-only module graph、100,000 result性能、4 targetのbyte再現archiveとchecksum、bash syntax、immutable Action pinを再確認した。README、Apache-2.0、CONTRIBUTING、CHANGELOG、SECURITY、release verification、uninstallが揃い、月4時間のmaintenance budgetと停止条件も維持する。
 - Security reviewer視点: malformed／oversized／invalid UTF-8、path escape、symlink escape、unsupported URI、permission、count／length上限のtest inventoryを確認し、policy gateはruntime network／process import、tracked secret pattern、credential-like pathを0件とした。Stable checkout中のread-only inspectionをthreat boundaryとしてREADMEとSECURITYへ明記し、source content、SARIF message、absolute root、token、telemetryを出力・送信しない。
-- Distribution review: v2 `publish-request.json`、automated-agent marker、publisher contract／payload gate、broker-host用checksum固定toolchain gate、clean archive quickstartを追加した。Payloadは47 files／95,897 bytesで、ownerは`kento-matsuki`、test commandは`scripts/publisher-gate.sh`、GitHub-native配布にregistry blockerはない。
+- Distribution review: v2 `publish-request.json`、automated-agent marker、publisher contract／payload gate、broker-host用checksum固定toolchain gate、clean archive quickstartを追加した。Payloadは47 files／95,897 bytesで、ownerは`kentomk`、test commandは`scripts/publisher-gate.sh`、GitHub-native配布にregistry blockerはない。
 - 判定: acceptance criteria 1〜11と利用者・maintainer・security・distribution gateをすべて通過したため、project stateを`publish-ready`へ進める。Publisher invocation、repository URL、外部採用はまだ存在せず、次の`publish` stepだけが専用brokerを実行できる。
 
 ## Publication attempts
 
-- `2026-07-20T19:21:30Z`: Owner-enabled `kento-github-publish`をclean HEAD `a37d1b1a2d6afee7ad6f61ee3535d392fe990afa`へ実行した。Broker内のself-contained quality gateはrace、license、secret、47 files／97,970 bytes payload、4-platform checksum、Action exit contract、clean quickstart 0秒を通過したが、GitHub `POST /repos/kento-matsuki/github-sarif-preflight/git/trees`がHTTP 403 `Resource not accessible by personal access token`となった。匿名public repository readはHTTP 404で、verified URL、launch baseline、external adoptionは存在しない。Credential取得、direct GitHub write、別transportによる迂回は行わず`publish-ready`を維持し、configuration fingerprint変更または`2026-07-21T01:21:30Z`以後だけ再評価する。
-- `2026-07-21T08:10:04Z`: Publisher configuration fingerprint変更後、owner-enabled `kento-github-publish`をclean HEAD `a67b7155cd7d7d8ae252c1d6335fbf6dc3471fc4`へ1回実行した。Broker gateはtest、race、license、secret、47 files／98,822 bytes payload、100,000-result性能、4-platform reproducible archive／checksum、Action exit contract、clean quickstart 0秒を通過し、verified URL `https://github.com/kento-matsuki/github-sarif-preflight`を返した。Launch baselineは14日windowでview、clone、download、star、forkがすべて0であり、公開直後なので採用失敗とは判定しない。Source、`go install`、composite Actionは利用可能だがreleaseは未作成のため、checksum付きrelease binary distributionは次のmaintenance対象とする。24時間後の`2026-07-22T08:10:04.012Z`を次回reviewに設定した。
+- `2026-07-20T19:21:30Z`: Owner-enabled `kento-github-publish`をclean HEAD `a37d1b1a2d6afee7ad6f61ee3535d392fe990afa`へ実行した。Broker内のself-contained quality gateはrace、license、secret、47 files／97,970 bytes payload、4-platform checksum、Action exit contract、clean quickstart 0秒を通過したが、GitHub `POST /repos/kentomk/github-sarif-preflight/git/trees`がHTTP 403 `Resource not accessible by personal access token`となった。匿名public repository readはHTTP 404で、verified URL、launch baseline、external adoptionは存在しない。Credential取得、direct GitHub write、別transportによる迂回は行わず`publish-ready`を維持し、configuration fingerprint変更または`2026-07-21T01:21:30Z`以後だけ再評価する。
+- `2026-07-21T08:10:04Z`: Publisher configuration fingerprint変更後、owner-enabled `kento-github-publish`をclean HEAD `a67b7155cd7d7d8ae252c1d6335fbf6dc3471fc4`へ1回実行した。Broker gateはtest、race、license、secret、47 files／98,822 bytes payload、100,000-result性能、4-platform reproducible archive／checksum、Action exit contract、clean quickstart 0秒を通過し、verified URL `https://github.com/kentomk/github-sarif-preflight`を返した。Launch baselineは14日windowでview、clone、download、star、forkがすべて0であり、公開直後なので採用失敗とは判定しない。Source、`go install`、composite Actionは利用可能だがreleaseは未作成のため、checksum付きrelease binary distributionは次のmaintenance対象とする。24時間後の`2026-07-22T08:10:04.012Z`を次回reviewに設定した。
 
 ## Maintenance history
 
