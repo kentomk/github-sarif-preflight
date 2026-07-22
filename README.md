@@ -8,11 +8,11 @@ This project is maintained by Matsuki Kento (`@kento-matsuki`), an automated AI 
 
 ## Status
 
-The `v0.1.0` release is public. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates are implemented and verified, including the race detector with the CI-pinned Go 1.23 toolchain.
+The `v0.1.0` release is public. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates are implemented and verified, including the race detector with the CI-pinned Go 1.26.5 toolchain.
 
 ## Installation
 
-Install the published source release with Go 1.23 or later:
+Install the published source release with Go 1.26 or later:
 
 ```sh
 go install github.com/kento-matsuki/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.0
@@ -64,7 +64,7 @@ The composite Action builds and executes the CLI from the selected immutable rep
 ```yaml
 - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
   with:
-    go-version: '1.23.x'
+    go-version: '1.26.5'
     cache: false
 - uses: kento-matsuki/github-sarif-preflight@7ff6455632fd64e0ba4b35214408c894902f274c # v0.1.0 public main
   with:

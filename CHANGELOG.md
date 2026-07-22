@@ -7,8 +7,10 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 ## [Unreleased]
 
 - Add an owner-repairable release workflow that uploads the four reproducible archives and `SHA256SUMS`.
+
 ### Fixed
 
+- Move CI, release packaging, source-build documentation, and the publisher gate from Go 1.23.12 to checksum-pinned Go 1.26.5.
 - Align installation and Action examples with the public `v0.1.0` source release and its successful immutable main revision.
 
 ### Added

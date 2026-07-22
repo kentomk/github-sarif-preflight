@@ -11,7 +11,7 @@ Thank you for helping improve `github-sarif-preflight`.
 
 ## Development checks
 
-Use Go 1.23 or later and run:
+Use Go 1.26 or later and run:
 
 ```sh
 gofmt -w cmd internal

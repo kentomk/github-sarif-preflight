@@ -16,7 +16,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
         with:
-          go-version: '1.23.x'
+          go-version: '1.26.5'
           cache: false
       - name: Format
         run: test -z "$(gofmt -l cmd internal)"
@@ -74,7 +74,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
         with:
-          go-version: '1.23.x'
+          go-version: '1.26.5'
           cache: false
       - name: Set up .NET
         uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4

@@ -39,7 +39,7 @@ fetch_verified() {
   }
 }
 
-fetch_verified https://dl.google.com/go/go1.23.12.linux-arm64.tar.gz "$tool_root/go.tar.gz" 52ce172f96e21da53b1ae9079808560d49b02ac86cecfa457217597f9bc28ab3
+fetch_verified https://go.dev/dl/go1.26.5.linux-arm64.tar.gz "$tool_root/go.tar.gz" fe4789e92b1f33358680864bbe8704289e7bb5fc207d80623c308935bd696d49
 fetch_verified https://ziglang.org/download/0.16.0/zig-aarch64-linux-0.16.0.tar.xz "$tool_root/zig.tar.xz" ea4b09bfb22ec6f6c6ceac57ab63efb6b46e17ab08d21f69f3a48b38e1534f17
 
 tar -xzf "$tool_root/go.tar.gz" -C "$tool_root"
