@@ -40,6 +40,54 @@ func TestRunExitContract(t *testing.T) {
 	}
 }
 
+func TestRunHelpContract(t *testing.T) {
+	tests := []struct {
+		name string
+		args []string
+		want []string
+	}{
+		{
+			name: "long option",
+			args: []string{"--help"},
+			want: []string{"Usage:", "check", "version", "GSP001", "Exit codes:"},
+		},
+		{
+			name: "short option",
+			args: []string{"-h"},
+			want: []string{"Usage:", "check", "version", "GSP005", "Exit codes:"},
+		},
+		{
+			name: "help command",
+			args: []string{"help"},
+			want: []string{"Usage:", "consumer profile", "current checkout", "Exit codes:"},
+		},
+		{
+			name: "check long option",
+			args: []string{"check", "--help"},
+			want: []string{"Usage:", "--root", "--format", "GSP001", "GSP005", "Exit codes:"},
+		},
+		{
+			name: "check short option",
+			args: []string{"check", "-h"},
+			want: []string{"Usage:", "--root", "--format", "GSP001", "GSP005", "Exit codes:"},
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			var stdout, stderr bytes.Buffer
+			code := Run(test.args, &stdout, &stderr, "test")
+			if code != 0 || stderr.Len() != 0 {
+				t.Fatalf("code=%d stdout=%q stderr=%q", code, stdout.String(), stderr.String())
+			}
+			for _, want := range test.want {
+				if !strings.Contains(stdout.String(), want) {
+					t.Fatalf("stdout does not contain %q: %q", want, stdout.String())
+				}
+			}
+		})
+	}
+}
+
 func TestRunJSONContract(t *testing.T) {
 	var stdout, stderr bytes.Buffer
 	code := Run([]string{"check", "--root", filepath.Dir(fixture("unsupported-base-id")), "--format", "json", fixture("unsupported-base-id")}, &stdout, &stderr, "test")

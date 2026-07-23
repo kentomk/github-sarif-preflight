@@ -6,7 +6,12 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 
 ## [Unreleased]
 
-No unreleased changes.
+### Fixed
+
+- Make top-level and `check` help available on stdout with exit `0`, including
+  the stable job, options, diagnostic range, and exit-code contract.
+- Preserve the 30-second and 256 MiB performance gate on publisher hosts that
+  do not install GNU `/usr/bin/time`, using a standard-library process fallback.
 
 ## [0.1.1] - 2026-07-22
 

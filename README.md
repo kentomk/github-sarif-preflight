@@ -74,6 +74,16 @@ The composite Action builds and executes the CLI from the selected immutable rep
 
 The pinned project revision above exists on public main and passed CI. The Action exits with the CLI's exact `0`/`1`/`2` contract. The optional `binary` input can point to a separately checksum-verified preinstalled binary instead of building the selected revision.
 
+Inspect the complete CLI contract without reading a SARIF file or checkout:
+
+```sh
+github-sarif-preflight --help
+github-sarif-preflight check --help
+```
+
+Both commands write help to stdout and exit `0`, so installers and automation
+can verify the job, options, diagnostics, and exit codes before running a scan.
+
 ## Diagnostics
 
 | ID | Severity | Meaning |

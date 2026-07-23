@@ -10,7 +10,43 @@ import (
 	"github.com/kentomk/github-sarif-preflight/internal/preflight"
 )
 
+const topHelp = `github-sarif-preflight checks SARIF against GitHub Code Scanning's consumer profile and the current checkout.
+
+Usage:
+  github-sarif-preflight check [--root PATH] [--format text|json] SARIF_FILE...
+  github-sarif-preflight version
+  github-sarif-preflight help
+
+The check command reports GSP001 through GSP005 diagnostics without uploading
+SARIF or reading source-file contents.
+
+Exit codes:
+  0  no actionable diagnostic
+  1  one or more consumer-profile diagnostics
+  2  invalid arguments, unreadable input, or malformed SARIF
+`
+
+const checkHelp = `github-sarif-preflight check
+
+Usage:
+  github-sarif-preflight check [--root PATH] [--format text|json] SARIF_FILE...
+
+Options:
+  --root PATH          repository checkout root (default ".")
+  --format text|json   output format (default "text")
+  -h, --help           show this help
+
+Exit codes:
+  0  no actionable diagnostic
+  1  one or more GSP001 through GSP005 diagnostics
+  2  invalid arguments, unreadable input, or malformed SARIF
+`
+
 func Run(args []string, stdout, stderr io.Writer, version string) int {
+	if len(args) == 1 && isHelp(args[0]) {
+		fmt.Fprint(stdout, topHelp)
+		return 0
+	}
 	if len(args) == 1 && args[0] == "version" {
 		fmt.Fprintln(stdout, version)
 		return 0
@@ -18,6 +54,10 @@ func Run(args []string, stdout, stderr io.Writer, version string) int {
 	if len(args) == 0 || args[0] != "check" {
 		fmt.Fprintln(stderr, "usage: github-sarif-preflight check [--root PATH] [--format text|json] SARIF_FILE...")
 		return 2
+	}
+	if len(args) == 2 && isHelp(args[1]) {
+		fmt.Fprint(stdout, checkHelp)
+		return 0
 	}
 
 	flags := flag.NewFlagSet("check", flag.ContinueOnError)
@@ -66,4 +106,8 @@ func Run(args []string, stdout, stderr io.Writer, version string) int {
 		return 1
 	}
 	return 0
+}
+
+func isHelp(arg string) bool {
+	return arg == "help" || arg == "-h" || arg == "--help"
 }

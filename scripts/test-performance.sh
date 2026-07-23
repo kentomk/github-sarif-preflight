@@ -21,8 +21,13 @@ awk 'BEGIN {
 }' >"$sarif_file"
 
 metrics_file="$test_root/metrics"
-/usr/bin/time -f '%e %M' -o "$metrics_file" \
-  "$preflight_binary" check --root "$test_root" "$sarif_file" >/dev/null
+if [[ -x /usr/bin/time ]]; then
+  /usr/bin/time -f '%e %M' -o "$metrics_file" \
+    "$preflight_binary" check --root "$test_root" "$sarif_file" >/dev/null
+else
+  go run ./scripts/perf-runner.go "$metrics_file" \
+    "$preflight_binary" check --root "$test_root" "$sarif_file" >/dev/null
+fi
 read -r elapsed_seconds maximum_rss_kib <"$metrics_file"
 
 awk -v elapsed="$elapsed_seconds" 'BEGIN { if (elapsed >= 30) exit 1 }'
