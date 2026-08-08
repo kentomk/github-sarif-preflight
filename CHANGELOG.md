@@ -9,6 +9,7 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 ### Fixed
 
 - Refresh the copy-ready composite Action to the current successful public-main revision and reject the superseded revision in the publisher contract.
+- Align the copy-ready Action pin with public main 29200fc and reject the superseded 3dffb557 revision.
 - Pin the copy-ready composite Action example to the current successful public main and reject the superseded revision in the publisher contract.
 - Correct the archive install example to use the extracted versioned directory
   and align the immutable Action example with the current public main SHA.
