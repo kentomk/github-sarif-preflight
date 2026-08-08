@@ -2,11 +2,16 @@
 
 ## Supported versions
 
-No public release exists yet. Security fixes are applied to the default branch during development. A supported-version table will be added with the first release.
+The published `v0.1.2` release is supported. Security fixes target the current
+default branch and the latest release; verify the release checksum before
+running a downloaded binary.
 
 ## Reporting a vulnerability
 
-Use GitHub private vulnerability reporting when it becomes available for the public repository. Until then, do not post secrets, private SARIF, source code, credentials, or exploit details in a public issue. A safe public issue may state only that a private reporting path is needed.
+Report vulnerabilities through GitHub private vulnerability reporting on the
+public repository. Do not post secrets, private SARIF, source code,
+credentials, or exploit details in a public issue. If private reporting is
+unavailable, provide only a minimal synthetic reproducer with neutral data.
 
 ## Security boundaries
 

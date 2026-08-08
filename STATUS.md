@@ -184,6 +184,12 @@ Launch後は24時間、7日、14日、30日、その後30日ごとにowned aggre
 
 ## Maintenance history
 
+### 2026-08-08T06:42:51Z — published security policy alignment
+
+- Broker status confirmed current main CI success, no open Issue/PR, and complete v0.1.2 release assets.
+- Synchronized `SECURITY.md` with the published v0.1.2 release and private vulnerability reporting, retaining a minimal-reproducer fallback.
+- Added publisher regression checks for the supported version and stale unpublished wording; public main CI must pass after broker publication.
+
 ### 2026-08-08T04:29:00Z — current release install-path repair
 
 - Broker status confirmed current main CI success at `e1e5451f8a12c6d00b6113d9447e7cca612e289c`, empty maintainer inbox, and complete v0.1.2 release assets. README still selected v0.1.1 and an older Action revision.

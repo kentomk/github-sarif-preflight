@@ -50,3 +50,9 @@ grep -Fq 'github-sarif-preflight@v0.1.2' README.md
 grep -Fq 'releases/tag/v0.1.2' README.md
 grep -Fq 'kentomk/github-sarif-preflight@e1e5451f8a12c6d00b6113d9447e7cca612e289c' README.md
 ! grep -Eq 'github-sarif-preflight@v0.1.1|package-release.sh v0.1.1|The `v0.1.1` release' README.md
+grep -Fq 'The published' SECURITY.md
+grep -Fq 'v0.1.2' SECURITY.md
+if grep -Fq 'No public release exists yet' SECURITY.md; then
+  echo 'SECURITY.md still claims the public project is unpublished' >&2
+  exit 1
+fi
