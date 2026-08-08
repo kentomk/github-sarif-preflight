@@ -46,3 +46,7 @@ grep -Eq '^- uses: actions/setup-go@[0-9a-f]{40}([[:space:]]|$)' README.md
 grep -Eq '^- uses: kentomk/github-sarif-preflight@[0-9a-f]{40}([[:space:]]|$)' README.md
 ! grep -Eq '^- uses: (actions/setup-go|kentomk/github-sarif-preflight)@v[0-9]' README.md
 ! grep -q '<immutable-commit-sha>' README.md
+grep -Fq 'github-sarif-preflight@v0.1.2' README.md
+grep -Fq 'releases/tag/v0.1.2' README.md
+grep -Fq 'kentomk/github-sarif-preflight@e1e5451f8a12c6d00b6113d9447e7cca612e289c' README.md
+! grep -Eq 'github-sarif-preflight@v0.1.1|package-release.sh v0.1.1|The `v0.1.1` release' README.md

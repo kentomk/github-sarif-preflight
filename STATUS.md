@@ -184,6 +184,12 @@ Launch後は24時間、7日、14日、30日、その後30日ごとにowned aggre
 
 ## Maintenance history
 
+### 2026-08-08T04:29:00Z — current release install-path repair
+
+- Broker status confirmed current main CI success at `e1e5451f8a12c6d00b6113d9447e7cca612e289c`, empty maintainer inbox, and complete v0.1.2 release assets. README still selected v0.1.1 and an older Action revision.
+- Updated the source-install command, reproducible package example, release identity, and immutable Action pin to the current public state. Added publisher regressions that reject the stale v0.1.1 path and require the current Action revision.
+- This is a distribution-trust repair, not an adoption claim: 14-day aggregate trial remains weak and no verified unrelated external use is attributed.
+
 - `2026-07-23T17:39:01Z`: 全6 managed repositoryをcredential-isolated status／metrics brokerで同期し、current main CIはすべてsuccess、open Issue／PRは0、各latest releaseは4 archive＋`SHA256SUMS`を保持することを確認した。対象projectのtop-level `--help`がusageをstderrへ出してexit `2`となる導入funnel障害を再現したため、`--help`、`-h`、`help`、`check --help`、`check -h`をstdout／exit `0`へ統一し、job、option、`GSP001`〜`GSP005`、exit codeの安定contractを追加した。5 help routeのstdout／stderr／exit codeをunit testへ固定し、READMEへpackageやSARIFを読まずにcontractを検証する導線を追加した。Full gateでpublisher hostにGNU `/usr/bin/time`がない固定path障害も再現したため、Go標準libraryのwall-time／max RSS測定fallbackを追加し、30秒／256 MiB gateを維持した。Aggregate clone／downloadは個票がなく直接採用へ数えない。
 
 - `2026-07-21T09:06:30Z`: Public main CI successを確認後、credential-isolated engagement brokerで`v0.1.0` source releaseを作成した。Aggregate traffic、Issue、PR、downloadは0で外部採用証拠はなく、release assetも0件のためhealthは`attention`、decisionは`improve`を維持した。

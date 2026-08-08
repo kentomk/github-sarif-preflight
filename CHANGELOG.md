@@ -8,6 +8,8 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 
 ### Fixed
 
+- Align source-install, reproducible-package, and immutable Action examples
+  with the published `v0.1.2` release and current successful public main.
 - Make top-level and `check` help available on stdout with exit `0`, including
   the stable job, options, diagnostic range, and exit-code contract.
 - Preserve the 30-second and 256 MiB performance gate on publisher hosts that
