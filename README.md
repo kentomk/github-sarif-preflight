@@ -83,13 +83,13 @@ The composite Action builds and executes the CLI from the selected immutable rep
   with:
     go-version: '1.26.5'
     cache: false
-- uses: kentomk/github-sarif-preflight@0110e3305a1fa4f10af03a752c542fd67844f695 # current public main
+- uses: kentomk/github-sarif-preflight@3dffb55760d105b5b9ffc1a0ff690f6c0a4cd7bc # current public main
   with:
     root: .
     sarif-file: results.sarif
 ```
 
-The pinned project revision above exists on public main and passed CI. The Action exits with the CLI's exact `0`/`1`/`2` contract. The optional `binary` input can point to a separately checksum-verified preinstalled binary instead of building the selected revision.
+The pinned project revision above is the current public main and passed CI. The Action exits with the CLI's exact `0`/`1`/`2` contract. The optional `binary` input can point to a separately checksum-verified preinstalled binary instead of building the selected revision.
 
 Inspect the complete CLI contract without reading a SARIF file or checkout:
 
