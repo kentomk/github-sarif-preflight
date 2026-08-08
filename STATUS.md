@@ -184,6 +184,12 @@ Launch後は24時間、7日、14日、30日、その後30日ごとにowned aggre
 
 ## Maintenance history
 
+### 2026-08-08T14:45:00Z — archive and Action trust-path repair
+
+- Release install replay found that `tar -xzf` creates a versioned directory while the README installed a root-level binary, so the copy-ready path failed after successful checksum verification.
+- Updated the install command to reference the extracted versioned directory and synchronized the immutable Action example with public main `efe5960945284c883a208d1c94dace67604dc781`; publisher contract now rejects both regressions.
+- Local publisher gate passed; after broker publication, public main CI and release assets will be rechecked. Aggregate metrics remain trial/weak and are not adoption evidence.
+
 ### 2026-08-08T06:42:51Z — published security policy alignment
 
 - Broker status confirmed current main CI success, no open Issue/PR, and complete v0.1.2 release assets.

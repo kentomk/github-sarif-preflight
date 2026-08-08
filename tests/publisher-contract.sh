@@ -50,7 +50,8 @@ grep -Fq 'github-sarif-preflight@v0.1.2' README.md
 grep -Fq 'releases/tag/v0.1.2' README.md
 grep -Fq 'sha256sum --check --strict -' README.md
 grep -Fq 'curl -fsSLo SHA256SUMS' README.md
-grep -Fq 'kentomk/github-sarif-preflight@e1e5451f8a12c6d00b6113d9447e7cca612e289c' README.md
+grep -Fq 'install -m 0755 github-sarif-preflight_v0.1.2_linux_amd64/github-sarif-preflight' README.md
+grep -Fq 'kentomk/github-sarif-preflight@efe5960945284c883a208d1c94dace67604dc781' README.md
 ! grep -Eq 'github-sarif-preflight@v0.1.1|package-release.sh v0.1.1|The `v0.1.1` release' README.md
 grep -Fq 'The published' SECURITY.md
 grep -Fq 'v0.1.2' SECURITY.md

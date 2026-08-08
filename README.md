@@ -35,7 +35,7 @@ curl -fsSL "$base/$archive" -o "$archive"
 curl -fsSLo SHA256SUMS "$base/SHA256SUMS"
 grep "  $archive$" SHA256SUMS | sha256sum --check --strict -
 tar -xzf "$archive"
-install -m 0755 github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"
+install -m 0755 github-sarif-preflight_v0.1.2_linux_amd64/github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"
 github-sarif-preflight --help
 ```
 
@@ -83,7 +83,7 @@ The composite Action builds and executes the CLI from the selected immutable rep
   with:
     go-version: '1.26.5'
     cache: false
-- uses: kentomk/github-sarif-preflight@e1e5451f8a12c6d00b6113d9447e7cca612e289c # current public main
+- uses: kentomk/github-sarif-preflight@efe5960945284c883a208d1c94dace67604dc781 # current public main
   with:
     root: .
     sarif-file: results.sarif

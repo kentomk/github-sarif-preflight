@@ -8,6 +8,8 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 
 ### Fixed
 
+- Correct the archive install example to use the extracted versioned directory
+  and align the immutable Action example with the current public main SHA.
 - Align source-install, reproducible-package, and immutable Action examples
   with the published `v0.1.2` release and current successful public main.
 - Make top-level and `check` help available on stdout with exit `0`, including
