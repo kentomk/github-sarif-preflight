@@ -26,6 +26,23 @@ Maintainers can reproduce the four archives with a fixed source epoch:
 SOURCE_DATE_EPOCH=0 scripts/package-release.sh v0.1.2 dist
 ```
 
+For a Linux amd64 runner, the complete archive install and verification path is:
+
+```sh
+archive=github-sarif-preflight_v0.1.2_linux_amd64.tar.gz
+base=https://github.com/kentomk/github-sarif-preflight/releases/download/v0.1.2
+curl -fsSL "$base/$archive" -o "$archive"
+curl -fsSLo SHA256SUMS "$base/SHA256SUMS"
+grep "  $archive$" SHA256SUMS | sha256sum --check --strict -
+tar -xzf "$archive"
+install -m 0755 github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"
+github-sarif-preflight --help
+```
+
+Use the matching `darwin_amd64`, `darwin_arm64`, or `linux_arm64` archive on
+other supported platforms. Keep the checksum file with the downloaded archive
+until verification succeeds; do not execute an archive that fails the check.
+
 ## Quick start
 
 From this repository, run the synthetic fixture:
