@@ -47,6 +47,7 @@ curl -fsSL "$base/$archive" -o "$archive"
 curl -fsSLo SHA256SUMS "$base/SHA256SUMS"
 grep "  $archive$" SHA256SUMS | sha256sum --check --strict -
 tar -xzf "$archive"
+mkdir -p "$HOME/.local/bin"
 install -m 0755 github-sarif-preflight_v0.1.2_linux_amd64/github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"
 github-sarif-preflight --help
 ```
