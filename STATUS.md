@@ -184,6 +184,12 @@ Launch後は24時間、7日、14日、30日、その後30日ごとにowned aggre
 
 ## Maintenance history
 
+### 2026-08-08T19:06:00Z — problem-first qualification guidance
+
+- Portfolio review found healthy CI and complete release assets but no direct external adoption; the remaining funnel friction was qualification for users searching from a GitHub SARIF upload failure rather than the project name.
+- Added explicit `Use this when` and `Do not use this when` guidance before installation, covering upload rejection, broken source links, offline checkout inspection, generic validation, unsupported URI forms, and upload boundaries. Added publisher regressions for both headings and the core qualification phrases.
+- This is a substantive discovery/qualification improvement with no change to the CLI contract, supported scope, or adoption claims.
+
 ### 2026-08-08T14:45:00Z — archive and Action trust-path repair
 
 - Release install replay found that `tar -xzf` creates a versioned directory while the README installed a root-level binary, so the copy-ready path failed after successful checksum verification.

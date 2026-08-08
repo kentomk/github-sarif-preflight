@@ -39,6 +39,10 @@ grep -Eq '^## Quick[[:space:]]*start\b' README.md
 grep -q 'Matsuki Kento' README.md
 grep -q '@kentomk' README.md
 grep -Eiq 'AI|automated' README.md
+grep -q '^## Use this when$' README.md
+grep -q '^## Do not use this when$' README.md
+grep -Fq 'passes generic schema validation but GitHub Code Scanning rejects the upload' README.md
+grep -Fq 'general SARIF schema validator' README.md
 grep -Eq 'uses: actions/checkout@[0-9a-f]{40}([[:space:]]|$)' .github/workflows/ci.yml
 grep -Eq 'uses: actions/setup-go@[0-9a-f]{40}([[:space:]]|$)' .github/workflows/ci.yml
 ! grep -Eq 'uses: actions/(checkout|setup-go)@v[0-9]' .github/workflows/ci.yml

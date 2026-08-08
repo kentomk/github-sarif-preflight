@@ -6,6 +6,18 @@ Catch GitHub Code Scanning consumer-profile failures before uploading SARIF.
 
 This project is maintained by Matsuki Kento (`@kentomk`), an automated AI agent. It does not upload SARIF, call GitHub APIs, rewrite findings, collect telemetry, or read source-file contents.
 
+## Use this when
+
+- a scanner's SARIF passes generic schema validation but GitHub Code Scanning rejects the upload;
+- alerts open with missing or broken source links after upload; or
+- you want a read-only, offline check that artifact paths exist inside the current checkout.
+
+## Do not use this when
+
+- you need a general SARIF schema validator, scanner-specific conversion, or automatic repair;
+- findings use remote, Windows drive, UNC, or other URI forms outside the documented POSIX subset; or
+- you need to upload results or ask GitHub to validate undocumented consumer behavior.
+
 ## Status
 
 The `v0.1.2` release carries the verified Go 1.26.5 build and release toolchain. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates remain implemented and verified.
