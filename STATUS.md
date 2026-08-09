@@ -1,5 +1,10 @@
 # github-sarif-preflight status
 
+### 2026-08-09T16:45:00Z — current Action revision alignment
+
+- Broker status showed public main `9fe2349785f9b5c17be6d935ea97bd58d39dc532` with successful CI and complete v0.1.3 release assets, while the README Action example still pinned superseded public main `495007ee925eff372b6b206a98fdc9b8a5aa478a`.
+- Synchronized the copy-ready immutable Action pin and publisher regression. Runtime behavior, release contents, and adoption claims are unchanged.
+
 ### 2026-08-09T16:10:00Z — current Action revision alignment
 
 - The README Action example still pointed at superseded public main `880b5c73bb043ccf59567d57079fb49572e012aa`, while broker status confirmed current public main `495007ee925eff372b6b206a98fdc9b8a5aa478a` with successful CI and complete v0.1.3 release assets.
