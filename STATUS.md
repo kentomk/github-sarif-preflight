@@ -1,5 +1,16 @@
 # github-sarif-preflight status
 
+### 2026-08-09T11:30:01Z — quickstart release guard correction
+
+- The aarch64 publisher host became available, but the new publisher regression used an unquoted shell fragment and rejected the valid `package-release.sh" v0.1.2` invocation before broker submission.
+- Corrected the regression to match the actual quoted command and retained the stale v0.1.0 rejection. The follow-up commit is `fix: make quickstart release guard quote-aware`; the prior quickstart repair remains the substantive distribution change.
+
+### 2026-08-09T11:10:17Z — published release quickstart alignment
+
+- Broker status confirmed public main CI success at `3b16686e4b5f0ba09f8bcb2b760e512b7d8b51e9`, no open Issue/PR, and complete `v0.1.2` release assets.
+- The clean archive quickstart still built and unpacked `v0.1.0`, so it did not exercise the published installation path. It now verifies `v0.1.2`; publisher regressions reject stale `v0.1.0` archive references.
+- `go test ./...`, `CGO_ENABLED=1 CC='zig cc' go test -race ./...`, `go vet ./...`, policy, performance, release packaging, clean archive quickstart, and publisher gate passed. No external adoption evidence was found; adoption remains trial/weak and maintenance decision remains fix.
+
 ### 2026-08-09T08:09:00Z — artifact URI whitespace boundary repair
 
 - Changed URI handling so leading or trailing whitespace is reported as `GSP002` instead of being silently removed and potentially resolving a different checkout path.

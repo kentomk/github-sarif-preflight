@@ -10,6 +10,8 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 
 ### Fixed
 
+- Align the clean archive quickstart with the published `v0.1.2` release and
+  add publisher regressions for stale `v0.1.0` archive references.
 - Refresh the immutable Action example to the verified current public main `3c654270` and reject the superseded `cb0f9f3` pin in the publisher contract.
 - Create the user binary directory before the copy-ready archive install command runs in a fresh home directory.
 - Refresh the copy-ready composite Action to the current successful public-main revision and reject the superseded revision in the publisher contract.
