@@ -161,7 +161,17 @@ func Analyze(root, version string, inputs []string) (Report, error) {
 					artifact := location.PhysicalLocation.ArtifactLocation
 					path := ""
 					if artifact.URI != nil {
-						path = strings.TrimSpace(*artifact.URI)
+						path = *artifact.URI
+						trimmed := strings.TrimSpace(path)
+						if path != trimmed {
+							report.Diagnostics = append(report.Diagnostics, Diagnostic{
+								ID: "GSP002", Severity: "error", Input: input, Run: runIndex, Result: resultIndex, Location: intPointer(locationIndex), RuleID: result.RuleID,
+								Message:     "physical location artifactLocation.uri has surrounding whitespace",
+								Remediation: "emit artifactLocation.uri without leading or trailing whitespace",
+							})
+							continue
+						}
+						path = trimmed
 					}
 					if path == "" {
 						report.Diagnostics = append(report.Diagnostics, Diagnostic{

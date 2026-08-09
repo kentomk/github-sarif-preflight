@@ -119,7 +119,7 @@ can verify the job, options, diagnostics, and exit codes before running a scan.
 | ID | Severity | Meaning |
 |---|---|---|
 | `GSP001` | error | A result has neither inline `message.text` nor `message.markdown`. |
-| `GSP002` | error | A physical location has an empty or missing `artifactLocation.uri`. |
+| `GSP002` | error | A physical location has an empty, missing, or whitespace-padded `artifactLocation.uri`; surrounding whitespace is not silently removed. |
 | `GSP003` | error | A location uses a base ID other than the documented `%SRCROOT%` subset. |
 | `GSP004` | error | A normalized repository-relative URI escapes the checkout root. |
 | `GSP005` | warning | A local URI is missing from the checkout or is not a regular file. |

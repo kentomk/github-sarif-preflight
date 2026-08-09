@@ -65,6 +65,48 @@ func TestAnalyzeRejectsInvalidJSON(t *testing.T) {
 	}
 }
 
+func TestAnalyzeTreatsWhitespaceArtifactURIAsEmpty(t *testing.T) {
+	temp := t.TempDir()
+	sarif := `{"version":"2.1.0","runs":[{"results":[{"message":{"text":"safe"},"locations":[{"physicalLocation":{"artifactLocation":{"uri":" \t\n "}}}]}]}]}`
+	input := filepath.Join(temp, "input.sarif")
+	if err := os.WriteFile(input, []byte(sarif), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	report, err := Analyze(temp, "test", []string{input})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(report.Diagnostics) != 1 || report.Diagnostics[0].ID != "GSP002" {
+		t.Fatalf("unexpected diagnostics: %#v", report.Diagnostics)
+	}
+	if report.Diagnostics[0].Path != "" {
+		t.Fatalf("whitespace URI produced path=%q, want empty", report.Diagnostics[0].Path)
+	}
+}
+
+func TestAnalyzeRejectsSurroundingArtifactURIWhitespace(t *testing.T) {
+	temp := t.TempDir()
+	root := filepath.Join(temp, "root")
+	if err := os.Mkdir(root, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	sarif := `{"version":"2.1.0","runs":[{"results":[{"message":{"text":"safe"},"locations":[{"physicalLocation":{"artifactLocation":{"uri":" src/app.go "}}}]}]}]}`
+	input := filepath.Join(temp, "input.sarif")
+	if err := os.WriteFile(input, []byte(sarif), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	report, err := Analyze(root, "test", []string{input})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(report.Diagnostics) != 1 || report.Diagnostics[0].ID != "GSP002" {
+		t.Fatalf("unexpected diagnostics: %#v", report.Diagnostics)
+	}
+	if !strings.Contains(report.Diagnostics[0].Message, "surrounding whitespace") {
+		t.Fatalf("message=%q, want whitespace explanation", report.Diagnostics[0].Message)
+	}
+}
+
 func TestAnalyzeRepositoryPaths(t *testing.T) {
 	tests := []struct {
 		name string

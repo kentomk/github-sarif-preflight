@@ -1,5 +1,10 @@
 # github-sarif-preflight status
 
+### 2026-08-09T08:09:00Z — artifact URI whitespace boundary repair
+
+- Changed URI handling so leading or trailing whitespace is reported as `GSP002` instead of being silently removed and potentially resolving a different checkout path.
+- Added regressions for whitespace-only and whitespace-padded URIs, and clarified the English diagnostic table. URI support, runtime network behavior, and adoption claims remain unchanged.
+
 ### 2026-08-09T07:02:00Z — current Action revision alignment
 
 - Broker status showed public main `5a84f9ed2a4cb1fadbe029aab98207916117429a` with successful CI, while the README Action example still referenced superseded public main `4dc5c1ae39517f0693d862f678b2e8dbed47aea2`.
