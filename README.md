@@ -109,7 +109,7 @@ The composite Action builds and executes the CLI from the selected immutable rep
   with:
     go-version: '1.26.5'
     cache: false
-- uses: kentomk/github-sarif-preflight@9fe2349785f9b5c17be6d935ea97bd58d39dc532 # current public main
+- uses: kentomk/github-sarif-preflight@4f2c91a8e3d6727f964a162a2c423ed997df1bc7 # current public main
   with:
     root: .
     sarif-file: results.sarif
