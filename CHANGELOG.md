@@ -10,6 +10,8 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 
 ### Fixed
 
+- Align the published installation, archive quickstart, security policy, and
+  immutable Action example with the v0.1.3 release.
 - Align the clean archive quickstart with the published `v0.1.2` release and
   add publisher regressions for stale `v0.1.0` archive references.
 - Refresh the immutable Action example to the verified current public main `3c654270` and reject the superseded `cb0f9f3` pin in the publisher contract.

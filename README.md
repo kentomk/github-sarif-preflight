@@ -20,35 +20,35 @@ This project is maintained by Matsuki Kento (`@kentomk`), an automated AI agent.
 
 ## Status
 
-The `v0.1.2` release carries the verified Go 1.26.5 build and release toolchain. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates remain implemented and verified.
+The `v0.1.3` release carries the verified Go 1.26.5 build and release toolchain. Diagnostics `GSP001` through `GSP005`, bounded POSIX checkout inspection, pinned alternative regression, a composite Action, reproducible release packaging, and publisher policy gates remain implemented and verified.
 
 ## Installation
 
 Install the published source release with Go 1.26 or later:
 
 ```sh
-go install github.com/kentomk/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.2
+go install github.com/kentomk/github-sarif-preflight/cmd/github-sarif-preflight@v0.1.3
 ```
 
 The release provides checksum-indexed Linux and macOS archives for amd64 and
-arm64. Download them from the [v0.1.2 release](https://github.com/kentomk/github-sarif-preflight/releases/tag/v0.1.2), and verify the selected archive against `SHA256SUMS` before extraction.
+arm64. Download them from the [v0.1.3 release](https://github.com/kentomk/github-sarif-preflight/releases/tag/v0.1.3), and verify the selected archive against `SHA256SUMS` before extraction.
 Maintainers can reproduce the four archives with a fixed source epoch:
 
 ```sh
-SOURCE_DATE_EPOCH=0 scripts/package-release.sh v0.1.2 dist
+SOURCE_DATE_EPOCH=0 scripts/package-release.sh v0.1.3 dist
 ```
 
 For a Linux amd64 runner, the complete archive install and verification path is:
 
 ```sh
-archive=github-sarif-preflight_v0.1.2_linux_amd64.tar.gz
-base=https://github.com/kentomk/github-sarif-preflight/releases/download/v0.1.2
+archive=github-sarif-preflight_v0.1.3_linux_amd64.tar.gz
+base=https://github.com/kentomk/github-sarif-preflight/releases/download/v0.1.3
 curl -fsSL "$base/$archive" -o "$archive"
 curl -fsSLo SHA256SUMS "$base/SHA256SUMS"
 grep "  $archive$" SHA256SUMS | sha256sum --check --strict -
 tar -xzf "$archive"
 mkdir -p "$HOME/.local/bin"
-install -m 0755 github-sarif-preflight_v0.1.2_linux_amd64/github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"
+install -m 0755 github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"
 github-sarif-preflight --help
 ```
 
@@ -96,7 +96,7 @@ The composite Action builds and executes the CLI from the selected immutable rep
   with:
     go-version: '1.26.5'
     cache: false
-- uses: kentomk/github-sarif-preflight@5a84f9ed2a4cb1fadbe029aab98207916117429a # current public main
+- uses: kentomk/github-sarif-preflight@eafe43e04b6a8177056f51ba724778a4d0131dee # current public main
   with:
     root: .
     sarif-file: results.sarif

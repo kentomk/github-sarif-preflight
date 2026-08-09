@@ -1,5 +1,11 @@
 # github-sarif-preflight status
 
+### 2026-08-09T11:45:11Z — v0.1.3 distribution alignment
+
+- Public main `eafe43e04b6a8177056f51ba724778a4d0131dee` and CI success are current, while the latest public release remained v0.1.2 and did not contain the quickstart repair.
+- Updated English installation/archive docs, SECURITY support version, quickstart release fixture, and immutable Action pin for v0.1.3; publisher contract now checks the current release and public main.
+- Publisher gate, payload, Action wrapper, and clean archive quickstart passed. The release will be created only after the current main update is broker-reflected and its CI remains successful.
+
 ### 2026-08-09T11:30:01Z — quickstart release guard correction
 
 - The aarch64 publisher host became available, but the new publisher regression used an unquoted shell fragment and rejected the valid `package-release.sh" v0.1.2` invocation before broker submission.

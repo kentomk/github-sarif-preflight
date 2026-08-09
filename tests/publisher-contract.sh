@@ -50,17 +50,17 @@ grep -Eq '^- uses: actions/setup-go@[0-9a-f]{40}([[:space:]]|$)' README.md
 grep -Eq '^- uses: kentomk/github-sarif-preflight@[0-9a-f]{40}([[:space:]]|$)' README.md
 ! grep -Eq '^- uses: (actions/setup-go|kentomk/github-sarif-preflight)@v[0-9]' README.md
 ! grep -q '<immutable-commit-sha>' README.md
-grep -Fq 'github-sarif-preflight@v0.1.2' README.md
-grep -Fq 'releases/tag/v0.1.2' README.md
+grep -Fq 'github-sarif-preflight@v0.1.3' README.md
+grep -Fq 'releases/tag/v0.1.3' README.md
 grep -Fq 'sha256sum --check --strict -' README.md
 grep -Fq 'curl -fsSLo SHA256SUMS' README.md
 grep -Fq 'mkdir -p "$HOME/.local/bin"' README.md
-grep -Fq 'install -m 0755 github-sarif-preflight_v0.1.2_linux_amd64/github-sarif-preflight' README.md
-grep -Fq 'kentomk/github-sarif-preflight@5a84f9ed2a4cb1fadbe029aab98207916117429a' README.md
-grep -Fq 'package-release.sh" v0.1.2' tests/quickstart-clean.sh
-grep -Fq 'github-sarif-preflight_v0.1.2_linux_arm64.tar.gz' tests/quickstart-clean.sh
-grep -Fq 'github-sarif-preflight_v0.1.2_linux_arm64' tests/quickstart-clean.sh
-! grep -Eq 'package-release.sh" v0.1.0|github-sarif-preflight_v0.1.0' tests/quickstart-clean.sh
+grep -Fq 'install -m 0755 github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight' README.md
+grep -Fq 'kentomk/github-sarif-preflight@eafe43e04b6a8177056f51ba724778a4d0131dee' README.md
+grep -Fq 'package-release.sh" v0.1.3' tests/quickstart-clean.sh
+grep -Fq 'github-sarif-preflight_v0.1.3_linux_arm64.tar.gz' tests/quickstart-clean.sh
+grep -Fq 'github-sarif-preflight_v0.1.3_linux_arm64' tests/quickstart-clean.sh
+! grep -Eq 'package-release.sh" v0.1\.[012]|github-sarif-preflight_v0.1\.([012])' tests/quickstart-clean.sh
 if grep -Fq 'kentomk/github-sarif-preflight@cb0f9f3354831bf214d71bf29b8581eedd038657' README.md; then
   printf '%s\n' 'publisher contract: README still pins the superseded public Action revision' >&2
   exit 1
@@ -73,9 +73,9 @@ if grep -Fq 'kentomk/github-sarif-preflight@3dffb55760d105b5b9ffc1a0ff690f6c0a4c
   printf '%s\n' 'publisher contract: README still pins the superseded public Action revision' >&2
   exit 1
 fi
-! grep -Eq 'github-sarif-preflight@v0.1.1|package-release.sh v0.1.1|The `v0.1.1` release' README.md
+! grep -Eq 'github-sarif-preflight@v0.1.[12]|package-release.sh v0.1.[12]|The `v0.1.[12]` release' README.md
 grep -Fq 'The published' SECURITY.md
-grep -Fq 'v0.1.2' SECURITY.md
+grep -Fq 'v0.1.3' SECURITY.md
 if grep -Fq 'No public release exists yet' SECURITY.md; then
   echo 'SECURITY.md still claims the public project is unpublished' >&2
   exit 1
