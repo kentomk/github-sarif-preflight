@@ -56,7 +56,7 @@ grep -Fq 'sha256sum --check --strict -' README.md
 grep -Fq 'curl -fsSLo SHA256SUMS' README.md
 grep -Fq 'mkdir -p "$HOME/.local/bin"' README.md
 grep -Fq 'install -m 0755 github-sarif-preflight_v0.1.2_linux_amd64/github-sarif-preflight' README.md
-grep -Fq 'kentomk/github-sarif-preflight@4dc5c1ae39517f0693d862f678b2e8dbed47aea2' README.md
+grep -Fq 'kentomk/github-sarif-preflight@5a84f9ed2a4cb1fadbe029aab98207916117429a' README.md
 if grep -Fq 'kentomk/github-sarif-preflight@cb0f9f3354831bf214d71bf29b8581eedd038657' README.md; then
   printf '%s\n' 'publisher contract: README still pins the superseded public Action revision' >&2
   exit 1
