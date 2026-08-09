@@ -10,6 +10,7 @@ The format is based on Keep a Changelog, and the project uses Semantic Versionin
 
 - Create the user binary directory before the copy-ready archive install command runs in a fresh home directory.
 - Refresh the copy-ready composite Action to the current successful public-main revision and reject the superseded revision in the publisher contract.
+- Refresh the immutable Action example to public main `cb0f9f3` and reject the prior `29200fc` pin in the publisher contract.
 - Align the copy-ready Action pin with public main 29200fc and reject the superseded 3dffb557 revision.
 - Pin the copy-ready composite Action example to the current successful public main and reject the superseded revision in the publisher contract.
 - Correct the archive install example to use the extracted versioned directory
