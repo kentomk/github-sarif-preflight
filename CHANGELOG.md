@@ -1,5 +1,7 @@
 # Changelog
 
+- Align the copy-ready immutable Action example and publisher regression with public main `4dc5c1ae`.
+
 All notable changes to this project will be documented here.
 
 The format is based on Keep a Changelog, and the project uses Semantic Versioning.
