@@ -24,3 +24,17 @@ elapsed=$(( $(date +%s) - start ))
 [[ $status -eq 1 && $output == *GSP001* && $elapsed -lt 300 ]]
 ! grep -Fq "$test_root/checkout" <<<"$output"
 printf 'clean archive quickstart passed: first-useful-output=%ss exit=1 diagnostic=GSP001\n' "$elapsed"
+
+set +e
+json_output=$("$package_root/github-sarif-preflight" check --format json --root "$test_root/checkout" "$test_root/results.sarif" 2>&1)
+json_status=$?
+set -e
+[[ $json_status -eq 1 ]]
+jq -e '
+  .schemaVersion == 1 and
+  (.diagnostics | length) == 1 and
+  .diagnostics[0].id == "GSP001" and
+  .summary.diagnostics == 1 and
+  .summary.unknowns == 0
+' <<<"$json_output" >/dev/null
+printf '%s\n' 'clean archive JSON quickstart passed: schema=1 diagnostic=GSP001 exit=1'

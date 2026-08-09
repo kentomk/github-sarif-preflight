@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Extend the clean archive quickstart to execute the JSON output path and verify its schema, `GSP001` diagnostic, summary, and exit contract.
+
 - Align the copy-ready composite Action example and publisher contract with broker-verified public main `495007ee` for the published `v0.1.3` release.
 
 - Align the copy-ready immutable Action example and publisher regression with public main `880b5c73`.

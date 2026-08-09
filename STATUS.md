@@ -227,6 +227,12 @@ Launch後は24時間、7日、14日、30日、その後30日ごとにowned aggre
 - Added explicit `Use this when` and `Do not use this when` guidance before installation, covering upload rejection, broken source links, offline checkout inspection, generic validation, unsupported URI forms, and upload boundaries. Added publisher regressions for both headings and the core qualification phrases.
 - This is a substantive discovery/qualification improvement with no change to the CLI contract, supported scope, or adoption claims.
 
+### 2026-08-09T17:40:00Z — executable JSON quickstart contract
+
+- The clean archive smoke previously exercised only text output, while CI users commonly need machine-readable diagnostics and could miss a JSON schema or exit-code regression.
+- Extended `tests/quickstart-clean.sh` to run the same failure fixture with `--format json`, require schema `1`, exactly one `GSP001`, summary diagnostics `1`, unknowns `0`, and exit `1`.
+- Added a copy-ready JSON/`jq` example to the README and kept the runtime scope unchanged: offline SARIF inspection, bounded paths, and payload-safe reports.
+
 ### 2026-08-08T14:45:00Z — archive and Action trust-path repair
 
 - Release install replay found that `tar -xzf` creates a versioned directory while the README installed a root-level binary, so the copy-ready path failed after successful checksum verification.

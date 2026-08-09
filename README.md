@@ -87,6 +87,19 @@ Exit codes:
 
 JSON output uses schema version `1` and contains only stable indexes, rule IDs, safe paths, diagnostic metadata, and summary counts. It does not echo SARIF messages or source snippets.
 
+For CI integrations, select JSON output and branch on the same exit contract:
+
+```sh
+set +e
+github-sarif-preflight check --format json --root . results.sarif >preflight.json
+status=$?
+set -e
+jq '.diagnostics, .summary' preflight.json
+exit "$status"
+```
+
+The clean archive quickstart verifies that a consumer-profile failure produces schema `1`, a `GSP001` diagnostic, and exit `1` without copying the SARIF message payload into the report.
+
 ## GitHub Action
 
 The composite Action builds and executes the CLI from the selected immutable repository revision. Set up Go first, then pass one SARIF file and its checkout root:
