@@ -56,7 +56,7 @@ grep -Fq 'sha256sum --check --strict -' README.md
 grep -Fq 'curl -fsSLo SHA256SUMS' README.md
 grep -Fq 'mkdir -p "$HOME/.local/bin"' README.md
 grep -Fq 'install -m 0755 github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight' README.md
-grep -Fq 'kentomk/github-sarif-preflight@eafe43e04b6a8177056f51ba724778a4d0131dee' README.md
+grep -Fq 'kentomk/github-sarif-preflight@880b5c73bb043ccf59567d57079fb49572e012aa' README.md
 grep -Fq 'package-release.sh" v0.1.3' tests/quickstart-clean.sh
 grep -Fq 'github-sarif-preflight_v0.1.3_linux_arm64.tar.gz' tests/quickstart-clean.sh
 grep -Fq 'github-sarif-preflight_v0.1.3_linux_arm64' tests/quickstart-clean.sh

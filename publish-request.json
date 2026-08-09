@@ -72,5 +72,5 @@
   "differentiation": "An offline read-only preflight limited to GitHub's documented SARIF consumer profile and POSIX checkout paths, with deterministic diagnostics and explicit unknowns instead of a general SARIF validator.",
   "testCommand": "scripts/publisher-gate.sh",
   "license": "Apache-2.0",
-  "commitMessage": "docs: align distribution with v0.1.3 release"
+  "commitMessage": "docs: align Action pin with current public main revision"
 }
