@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Harden the copy-ready archive install example with temporary extraction,
+  unsafe tar member rejection, and atomic replacement of the user binary.
 - Require exactly one selected archive row in the copy-ready SHA256SUMS verification command, rejecting missing or duplicate rows before extraction.
 
 - Pin the copy-ready composite Action to the immutable v0.1.3 release revision instead of moving public main, preventing routine maintenance commits from invalidating the documented integration.

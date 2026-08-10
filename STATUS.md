@@ -1,5 +1,13 @@
 # github-sarif-preflight status
 
+### 2026-08-10T06:43:00Z — harden copy-ready archive installation
+
+- The README archive install path now rejects absolute or `..` tar members,
+  extracts into a cleaned temporary directory, and replaces the user binary
+  through a `.new` path after checksum verification.
+- Added publisher-contract coverage for the safety boundary. Analyzer
+  behavior, release assets, support matrix, and adoption claims are unchanged.
+
 ### 2026-08-10T02:40:00Z — strict selected-archive checksum documentation
 
 - The copy-ready archive install example previously piped every matching `SHA256SUMS` row into `sha256sum`, so a missing or duplicate selected-archive entry was not rejected as a distinct manifest-contract failure.

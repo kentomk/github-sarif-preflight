@@ -48,9 +48,14 @@ curl -fsSLo SHA256SUMS "$base/SHA256SUMS"
 checksum_matches=$(grep -Ec "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS || true)
 test "$checksum_matches" -eq 1 || { echo "expected exactly one checksum row for $archive" >&2; exit 2; }
 grep -E "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS | sha256sum --check --strict -
-tar -xzf "$archive"
+unsafe_member=$(tar -tzf "$archive" | grep -E '(^/|(^|/)\.\.(\/|$))' || true)
+test -z "$unsafe_member" || { echo 'archive contains an unsafe member path' >&2; exit 2; }
+extract_dir=$(mktemp -d)
+trap 'rm -rf "$extract_dir"' EXIT HUP INT TERM
+tar -xzf "$archive" -C "$extract_dir"
 mkdir -p "$HOME/.local/bin"
-install -m 0755 github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"
+install -m 0755 "$extract_dir/github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight" "$HOME/.local/bin/github-sarif-preflight.new"
+mv -f "$HOME/.local/bin/github-sarif-preflight.new" "$HOME/.local/bin/github-sarif-preflight"
 github-sarif-preflight --help
 ```
 
