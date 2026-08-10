@@ -102,20 +102,20 @@ The clean archive quickstart verifies that a consumer-profile failure produces s
 
 ## GitHub Action
 
-The composite Action builds and executes the CLI from the selected immutable repository revision. Set up Go first, then pass one SARIF file and its checkout root:
+The composite Action builds and executes the CLI from the immutable `v0.1.3` release revision. Set up Go first, then pass one SARIF file and its checkout root:
 
 ```yaml
 - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
   with:
     go-version: '1.26.5'
     cache: false
-- uses: kentomk/github-sarif-preflight@60d60eab084f52b626d705416ac6fb75b1d8f58e # current public main
+- uses: kentomk/github-sarif-preflight@f4728fec9562b8c1a77ea3a47fd689b025b1a58d # v0.1.3 release revision
   with:
     root: .
     sarif-file: results.sarif
 ```
 
-The pinned project revision above is the current public main and passed CI. The Action exits with the CLI's exact `0`/`1`/`2` contract. The optional `binary` input can point to a separately checksum-verified preinstalled binary instead of building the selected revision.
+The pinned project revision above was included in the published v0.1.3 release and passed CI. The Action exits with the CLI's exact `0`/`1`/`2` contract. The optional `binary` input can point to a separately checksum-verified preinstalled binary instead of building the selected revision.
 
 Inspect the complete CLI contract without reading a SARIF file or checkout:
 

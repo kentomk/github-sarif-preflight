@@ -1,5 +1,10 @@
 # github-sarif-preflight status
 
+### 2026-08-10T00:35:00Z — stabilize Action distribution pin
+
+- Replaced the README Action pin to moving public main with the immutable commit included in the published v0.1.3 release (`f4728fec9562b8c1a77ea3a47fd689b025b1a58d`).
+- Updated the publisher regression and English guidance to enforce the release-bound revision. Routine maintenance commits can now update main without another stale-pin repair; a future release is the explicit update point.
+
 ### 2026-08-09T16:45:00Z — current Action revision alignment
 
 - Broker status showed public main `9fe2349785f9b5c17be6d935ea97bd58d39dc532` with successful CI and complete v0.1.3 release assets, while the README Action example still pinned superseded public main `495007ee925eff372b6b206a98fdc9b8a5aa478a`.
