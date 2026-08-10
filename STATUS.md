@@ -1,5 +1,14 @@
 # github-sarif-preflight status
 
+### 2026-08-10T09:08:00Z — reject symlink archive payloads before install
+
+- The copy-ready archive install path now requires the expected extracted
+  binary to be a regular non-symlink file before `install` follows it into the
+  user's bin directory.
+- Added a publisher-contract regression for the regular-file boundary. The
+  local archive/release gates passed; public publication and CI reflection are
+  pending for this change.
+
 ### 2026-08-10T06:43:00Z — harden copy-ready archive installation
 
 - The README archive install path now rejects absolute or `..` tar members,

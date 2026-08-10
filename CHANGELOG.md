@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Reject a symlink at the expected extracted binary path before installing the
+  archive payload, and cover the regular-file contract in the publisher gate.
+
 - Harden the copy-ready archive install example with temporary extraction,
   unsafe tar member rejection, and atomic replacement of the user binary.
 - Require exactly one selected archive row in the copy-ready SHA256SUMS verification command, rejecting missing or duplicate rows before extraction.

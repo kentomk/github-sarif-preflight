@@ -53,8 +53,10 @@ test -z "$unsafe_member" || { echo 'archive contains an unsafe member path' >&2;
 extract_dir=$(mktemp -d)
 trap 'rm -rf "$extract_dir"' EXIT HUP INT TERM
 tar -xzf "$archive" -C "$extract_dir"
+expected_binary="$extract_dir/github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight"
+test -f "$expected_binary" && test ! -L "$expected_binary" || { echo 'archive binary is not a regular file' >&2; exit 2; }
 mkdir -p "$HOME/.local/bin"
-install -m 0755 "$extract_dir/github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight" "$HOME/.local/bin/github-sarif-preflight.new"
+install -m 0755 "$expected_binary" "$HOME/.local/bin/github-sarif-preflight.new"
 mv -f "$HOME/.local/bin/github-sarif-preflight.new" "$HOME/.local/bin/github-sarif-preflight"
 github-sarif-preflight --help
 ```
