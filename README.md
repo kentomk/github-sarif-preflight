@@ -45,7 +45,9 @@ archive=github-sarif-preflight_v0.1.3_linux_amd64.tar.gz
 base=https://github.com/kentomk/github-sarif-preflight/releases/download/v0.1.3
 curl -fsSL "$base/$archive" -o "$archive"
 curl -fsSLo SHA256SUMS "$base/SHA256SUMS"
-grep "  $archive$" SHA256SUMS | sha256sum --check --strict -
+checksum_matches=$(grep -Ec "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS || true)
+test "$checksum_matches" -eq 1 || { echo "expected exactly one checksum row for $archive" >&2; exit 2; }
+grep -E "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS | sha256sum --check --strict -
 tar -xzf "$archive"
 mkdir -p "$HOME/.local/bin"
 install -m 0755 github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight "$HOME/.local/bin/github-sarif-preflight"

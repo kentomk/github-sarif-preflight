@@ -54,6 +54,9 @@ grep -Fq 'github-sarif-preflight@v0.1.3' README.md
 grep -Fq 'releases/tag/v0.1.3' README.md
 grep -Fq 'sha256sum --check --strict -' README.md
 grep -Fq 'curl -fsSLo SHA256SUMS' README.md
+grep -Fq 'checksum_matches=$(grep -Ec' README.md
+grep -Fq 'test "$checksum_matches" -eq 1' README.md
+grep -Fq 'grep -E "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS' README.md
 grep -Fq 'mkdir -p "$HOME/.local/bin"' README.md
 grep -Fq 'install -m 0755 github-sarif-preflight_v0.1.3_linux_amd64/github-sarif-preflight' README.md
 grep -Fq 'github-sarif-preflight@f4728fec9562b8c1a77ea3a47fd689b025b1a58d # v0.1.3 release revision' README.md

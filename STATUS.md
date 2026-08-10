@@ -1,5 +1,11 @@
 # github-sarif-preflight status
 
+### 2026-08-10T02:40:00Z — strict selected-archive checksum documentation
+
+- The copy-ready archive install example previously piped every matching `SHA256SUMS` row into `sha256sum`, so a missing or duplicate selected-archive entry was not rejected as a distinct manifest-contract failure.
+- Added an exact-one-row check for the selected archive filename before checksum verification and a publisher-contract regression for the command shape. SARIF analysis behavior, release assets, and adoption claims are unchanged.
+- The local change requires broker publication and public main CI confirmation before it counts as a completed public maintenance release.
+
 ### 2026-08-10T00:35:00Z — stabilize Action distribution pin
 
 - Replaced the README Action pin to moving public main with the immutable commit included in the published v0.1.3 release (`f4728fec9562b8c1a77ea3a47fd689b025b1a58d`).
