@@ -47,7 +47,14 @@ curl -fsSL "$base/$archive" -o "$archive"
 curl -fsSLo SHA256SUMS "$base/SHA256SUMS"
 checksum_matches=$(grep -Ec "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS || true)
 test "$checksum_matches" -eq 1 || { echo "expected exactly one checksum row for $archive" >&2; exit 2; }
-grep -E "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS | sha256sum --check --strict -
+if command -v sha256sum >/dev/null 2>&1; then
+  grep -E "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS | sha256sum --check --strict -
+elif command -v shasum >/dev/null 2>&1; then
+  grep -E "^[0-9a-fA-F]{64}  $archive$" SHA256SUMS | shasum -a 256 --check -
+else
+  echo 'need sha256sum or shasum for checksum verification' >&2
+  exit 2
+fi
 unsafe_member=$(tar -tzf "$archive" | grep -E '(^/|(^|/)\.\.(\/|$))' || true)
 test -z "$unsafe_member" || { echo 'archive contains an unsafe member path' >&2; exit 2; }
 extract_dir=$(mktemp -d)
@@ -62,8 +69,10 @@ github-sarif-preflight --help
 ```
 
 Use the matching `darwin_amd64`, `darwin_arm64`, or `linux_arm64` archive on
-other supported platforms. Keep the checksum file with the downloaded archive
-until verification succeeds; do not execute an archive that fails the check.
+other supported platforms. The example selects `sha256sum` or `shasum -a 256`
+and fails closed if neither verifier is available. Keep the checksum file with
+the downloaded archive until verification succeeds; do not execute an archive
+that fails the check.
 
 ## Quick start
 

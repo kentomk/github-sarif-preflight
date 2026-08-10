@@ -28,6 +28,15 @@ targets=(
 )
 archives=()
 
+if command -v sha256sum >/dev/null 2>&1; then
+  checksum_command=(sha256sum)
+elif command -v shasum >/dev/null 2>&1; then
+  checksum_command=(shasum -a 256)
+else
+  printf '%s\n' 'package release requires sha256sum or shasum' >&2
+  exit 1
+fi
+
 for target in "${targets[@]}"; do
   target_os=${target%/*}
   target_arch=${target#*/}
@@ -56,7 +65,7 @@ done
 
 (
   cd "$output_directory"
-  sha256sum "${archives[@]}" >SHA256SUMS
+  "${checksum_command[@]}" "${archives[@]}" >SHA256SUMS
 )
 
 printf 'packaged %s archives for %s in %s\n' "${#archives[@]}" "$version" "$output_directory"

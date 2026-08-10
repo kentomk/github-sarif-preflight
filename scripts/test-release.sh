@@ -6,6 +6,14 @@ test_root=$(mktemp -d "${TMPDIR:-/tmp}/github-sarif-preflight-release-test.XXXXX
 trap 'rm -rf -- "$test_root"' EXIT
 
 version=v0.1.0-test.1
+if command -v sha256sum >/dev/null 2>&1; then
+  checksum_check=(sha256sum -c)
+elif command -v shasum >/dev/null 2>&1; then
+  checksum_check=(shasum -a 256 -c)
+else
+  printf '%s\n' 'release test requires sha256sum or shasum' >&2
+  exit 1
+fi
 SOURCE_DATE_EPOCH=0 "$repository_root/scripts/package-release.sh" "$version" "$test_root/first"
 SOURCE_DATE_EPOCH=0 "$repository_root/scripts/package-release.sh" "$version" "$test_root/second"
 
@@ -30,7 +38,7 @@ done < <(find "$test_root/first" -maxdepth 1 -type f -name '*.tar.gz' | sort)
 
 (
   cd "$test_root/first"
-  sha256sum -c SHA256SUMS
+  "${checksum_check[@]}" SHA256SUMS
 )
 
 case "$(uname -s)/$(uname -m)" in

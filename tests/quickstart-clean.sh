@@ -8,7 +8,14 @@ trap 'rm -rf -- "$test_root"' EXIT
 SOURCE_DATE_EPOCH=0 "$project_root/scripts/package-release.sh" v0.1.3 "$test_root/dist" >/dev/null
 (
   cd "$test_root/dist"
-  sha256sum -c SHA256SUMS >/dev/null
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum -c SHA256SUMS >/dev/null
+  elif command -v shasum >/dev/null 2>&1; then
+    shasum -a 256 -c SHA256SUMS >/dev/null
+  else
+    echo 'need sha256sum or shasum for checksum verification' >&2
+    exit 2
+  fi
 )
 tar -xzf "$test_root/dist/github-sarif-preflight_v0.1.3_linux_arm64.tar.gz" -C "$test_root"
 package_root="$test_root/github-sarif-preflight_v0.1.3_linux_arm64"

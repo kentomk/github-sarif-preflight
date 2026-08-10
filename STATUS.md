@@ -1,5 +1,13 @@
 # github-sarif-preflight status
 
+### 2026-08-10T12:45:00Z — make archive checksum verification portable
+
+- The README, reproducible package script, release test, and clean quickstart
+  now share a `sha256sum`/`shasum -a 256` verifier selection with an explicit
+  fail-closed branch.
+- SARIF analysis, release assets, and adoption claims are unchanged; local
+  quality and broker publication remain required for this maintenance.
+
 ### 2026-08-10T09:08:00Z — reject symlink archive payloads before install
 
 - The copy-ready archive install path now requires the expected extracted

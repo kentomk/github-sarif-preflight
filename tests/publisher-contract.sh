@@ -53,7 +53,11 @@ grep -Eq '^- uses: kentomk/github-sarif-preflight@[0-9a-f]{40}([[:space:]]|$)' R
 ! grep -q '<immutable-commit-sha>' README.md
 grep -Fq 'github-sarif-preflight@v0.1.3' README.md
 grep -Fq 'releases/tag/v0.1.3' README.md
+grep -Fq 'if command -v sha256sum >/dev/null 2>&1; then' README.md
 grep -Fq 'sha256sum --check --strict -' README.md
+grep -Fq 'elif command -v shasum >/dev/null 2>&1; then' README.md
+grep -Fq 'shasum -a 256 --check -' README.md
+grep -Fq 'need sha256sum or shasum for checksum verification' README.md
 grep -Fq 'curl -fsSLo SHA256SUMS' README.md
 grep -Fq 'checksum_matches=$(grep -Ec' README.md
 grep -Fq 'test "$checksum_matches" -eq 1' README.md

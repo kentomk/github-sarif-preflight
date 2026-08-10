@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Make archive manifest creation, release verification, and the clean
+  quickstart select `sha256sum` or `shasum -a 256`, failing closed when neither
+  verifier is available.
+
 - Reject a symlink at the expected extracted binary path before installing the
   archive payload, and cover the regular-file contract in the publisher gate.
 
